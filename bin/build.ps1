@@ -73,12 +73,7 @@ function Build() {
                     "$workingDir\src\main.css",
                     $langFiles.FullName
                 )
-                if ($buildTest) {
-                    Write-Host "Skip $itemsToZip"
-                }
-                else {
-                    CompressFiles $langCode $zipFile $itemsToZip
-                }
+                CompressFiles $langCode $zipFile $itemsToZip
             }
             else {
                 # Handle multiple files with variants
