@@ -1,4 +1,5 @@
-// import { console } from "./logHelper";
+import { MOD_NAMESPACE } from "./constants";
+import logger from "./logHelper";
 
 export interface TypeBI18NInputType {
   f: string;
@@ -28,11 +29,6 @@ export interface TypeBOutputText {
 }
 
 // come from GPT-4
-function ModI18NTypeB_normalizeSearchPattern(pattern: string): RegExp {
-  return new RegExp(ModI18NTypeB_normalizeSearchString(pattern), "g");
-}
-
-// come from GPT-4
 function ModI18NTypeB_escapedPatternString(pattern: string): string {
   return pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -47,52 +43,6 @@ function ModI18NTypeB_normalizeSearchString(pattern: string) {
   // console.log('p:', [p]);
 
   return p;
-}
-
-// come from GPT-4
-function ModI18NTypeB_ignoreSpaceString(pattern: string) {
-  // 转义正则表达式中的特殊字符
-  const escapedPattern = pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  // 转换空格
-  // return escapedPattern.replace(/\s+/g, '\\s*');
-  // return escapedPattern.split('').map(c => c.trim() ? c + '\\s*' : '').join('');
-  const cc = escapedPattern.split("");
-  for (let i = 0; i < cc.length; i++) {
-    const ct = cc[i].trim();
-    if (ct === "") {
-      cc[i] = "";
-    } else if (ct !== "\\") {
-      cc[i] = cc[i] + "\\s*";
-    } else {
-      cc[i] = cc[i];
-    }
-  }
-  return ["\\s*", ...cc, "\\s*"].join("");
-}
-
-// GPT-4
-function fuzzyMatchManual(strA: string, strB: string, startIndex = 0) {
-  let j = startIndex;
-
-  // 去除字符串B中的空白字符
-  const b = strB.replace(/\s+/g, "");
-
-  for (let i = 0; i < b.length; i++) {
-    // 跳过字符串A中的空白字符
-    while (j < strA.length && /\s/.test(strA[j])) {
-      j++;
-    }
-
-    // 如果字符串A已经结束，但字符串B还没有，返回-1
-    if (j >= strA.length) return -1;
-
-    // 比较两个字符，如果不同，返回-1
-    if (strA[j] !== b[i]) return -1;
-
-    j++;
-  }
-
-  return j;
 }
 
 // original StoryScript -> (dontTrim/Trim) -> (dontTrimTag/TrimTag) Trim or not in original string -> match `from:string` -> notMatchRegex filer -> replace use to string
@@ -340,7 +290,7 @@ class ModI18NTypeB_PassageMatcher {
           textArray.push(s.substring(lastIndex, pStart), v.to);
           lastIndex = pStart + v.from.length;
         } else {
-          console.error(
+          logger.error(
             "tryReplaceStringFuzzyWithHintIndex cannot find: ",
             [v.from],
             " in ",
@@ -354,7 +304,7 @@ class ModI18NTypeB_PassageMatcher {
         re = undefined;
       } catch (e) {
         console.error(e);
-        console.error(
+        logger.error(
           "tryReplaceStringFuzzyWithHintIndex cannot find with error: ",
           [v.from],
           " in ",
@@ -410,7 +360,8 @@ class ModI18NTypeB_PassageMatcher {
           textArray.push(s.substring(lastIndex, pStart), v.to);
           lastIndex = pStart + v.from.length;
         } else {
-          console.error(
+          logger.warn(
+            MOD_NAMESPACE,
             "tryReplaceStringFuzzyWithHintIndexComp cannot find: ",
             [v.from],
             " in ",
@@ -424,7 +375,7 @@ class ModI18NTypeB_PassageMatcher {
         re = undefined;
       } catch (e) {
         console.error(e);
-        console.error(
+        logger.error(
           "tryReplaceStringFuzzyWithHintIndexComp cannot find with error: ",
           [v.from],
           " in ",
@@ -472,7 +423,7 @@ class ModI18NTypeB_PassageMatcher {
           const pEnd = pStart + v.from.length;
           s = s.substring(0, pStart) + v.to + s.substring(pEnd);
         } else {
-          console.error(
+          logger.error(
             "tryReplaceStringFuzzyWithHint cannot find: ",
             [v.from],
             " in ",
@@ -486,7 +437,7 @@ class ModI18NTypeB_PassageMatcher {
         re = undefined;
       } catch (e) {
         console.error(e);
-        console.error(
+        logger.error(
           "tryReplaceStringFuzzyWithHint cannot find with error: ",
           [v.from],
           " in ",
@@ -642,7 +593,7 @@ export class ModI18NTypeB {
     try {
       return this.outputTextMatchBuffer.tryReplace(text);
     } catch (e) {
-      console.error(e);
+      logger.error(e);
       return text;
     }
   }
@@ -656,7 +607,7 @@ export class ModI18NTypeB {
       try {
         return this.inputStoryMatchBuffer.replacePassageContent(passageName, text);
       } catch (e) {
-        console.error(e);
+        logger.error(e);
       }
     }
     return text;

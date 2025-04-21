@@ -10,8 +10,10 @@ import { TypeBOutputText, TypeBInputStoryScript, ModI18NTypeB, TypeBI18NInputTyp
 import JSZip, { JSZipStreamHelper } from "jszip";
 import { assert, is } from "tsafe";
 import packageJson from "../package.json";
-// import { logger } from "./logHelper";
-// logger.info("Logger initialized");
+import logger from "./logHelper";
+
+import { MOD_NAMESPACE } from "./constants";
+logger.info(MOD_NAMESPACE, "Logger initialized");
 
 export function sleep(ms: number = 0) {
   return new Promise((resolve) => setTimeout(resolve, ms));
