@@ -1,48 +1,55 @@
 {
-  "name": "SC2-i18n-Mod",
+  "name": "dol-languages-mod",
   "version": "1.0.0",
-  "description": "SugarCube2 i18n Mod",
-  "private": true,
-  "scripts": {
-    "ts:w": "tsc -w -p ./src_boot/tsconfig.json",
-    "build:webpack:w": "webpack -w -c ./webpack.config.js",
-    "ts:tool:w": "tsc -w -p ./tool/tsconfig.json",
-    "===============1": "",
-    "ts:build": "tsc -p ./src_boot/tsconfig.json",
-    "build:webpack": "webpack -c ./webpack.config.js",
-    "ts:tool": "tsc -p ./tool/tsconfig.json",
-    "===============2": "",
-    "ts:test": "tsc -p ./test/tsconfig.json",
-    "test": "node ./dist-tool/jsonTest.js i18n.json"
+  "type": "module",
+  "description": "Languages mod for DoL and DoLP",
+  "private": false,
+  "authors": [
+    "rainbowflesh",
+    "Lyoko-Jeremie",
+    "NumberSir",
+    "HCPTangHY",
+    "MagicalAstrogy",
+    "hxdnshx"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rainbowflesh/Degrees-of-Lewdity-Languages-Mod/issues"
   },
-  "packageManager": "yarn@3.4.1",
+  "homepage": "https://github.com/rainbowflesh/Degrees-of-Lewdity-Languages-Mod",
+  "scripts": {
+    "build:w": "webpack -w -c ./webpack.config.js",
+    "ts:w": "tsc -w -p ./src/boot/tsconfig.json",
+    "ts:utils:w": "tsc -w -p ./utils/tsconfig.json",
+    "test": "tsc -p ./test/tsconfig.json",
+    "build": "webpack -c ./webpack.config.js && tsc -p ./src/boot/tsconfig.json && tsc -p ./src/utils/tsconfig.json"
+  },
   "dependencies": {
     "@streamparser/json": "^0.0.17",
-    "idb": "^8.0.0",
+    "idb": "^8.0.2",
     "idb-keyval": "^6.2.1",
     "json5": "^2.2.3",
     "jszip": "^3.10.1",
     "lodash": "^4.17.21",
+    "pino": "^9.6.0",
     "tsafe": "^1.8.5"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.19",
-    "@types/lodash": "^4.14.198",
-    "@types/node": "^20.6.0",
+    "@types/jquery": "^3.5.32",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^20.17.30",
     "@webpack-cli/generators": "^3.0.7",
-    "css-loader": "^6.8.1",
+    "css-loader": "^6.11.0",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "html-webpack-plugin": "^5.5.3",
-    "nodemon": "^3.0.1",
-    "sass": "^1.66.1",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.3",
-    "ts-loader": "^9.4.4",
-    "ts-mixer": "^6.0.3",
-    "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "^5.1.6",
-    "webpack": "^5.88.2",
+    "html-webpack-plugin": "^5.6.3",
+    "nodemon": "^3.1.9",
+    "pino-pretty": "^13.0.0",
+    "ts-loader": "^9.5.2",
+    "ts-mixer": "^6.0.4",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.6",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.2"
   }
 }

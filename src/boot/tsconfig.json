@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "module": "ES6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "../../",
+    "paths": {
+      "logHelper": ["src/logHelper"],
+      "winDef": ["src/winDef.d.ts"]
+    },
+    "typeRoots": ["../../node_modules/@types"],
+    "target": "ES2017",
+    "lib": ["DOM", "ES2022"],
+    "types": [],
+    "allowJs": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "outDir": "../../dist/dol-languages-mod/",
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "alwaysStrict": false,
+    "skipLibCheck": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist", "webpack.config.js", "./GM_config_TS/Greasemonkey.d.ts"]
+}

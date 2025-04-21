@@ -1,22 +1,12 @@
 {
-  "name": "ModI18N",
-  "version": "1.6.0",
-  "styleFileList": [
-    "css-base-i18n-fix.css"
-  ],
-  "scriptFileList_earlyload": [
-    "dist/earlyload/earlyload.js"
-  ],
-  "scriptFileList_inject_early": [
-    "dist/i18nLoad.js"
-  ],
-  "scriptFileList_preload": [
-    "dist/preload/preload.js"
-  ],
-  "scriptFileList": [
-  ],
-  "tweeFileList": [
-  ],
+  "name": "dol-languages-mod",
+  "version": "1.0.0",
+  "styleFileList": ["main.css"],
+  "scriptFileList_earlyload": ["dol-languages-mod/earlyload.js"],
+  "scriptFileList_inject_early": ["dol-languages-mod/translationsLoader.js"],
+  "scriptFileList_preload": ["dol-languages-mod/preload.js"],
+  "scriptFileList": [],
+  "tweeFileList": [],
   "imgFileList": [
     "img/misc/locations/banner/banner_snow.png",
     "img/misc/locations/banner/banner_snow_blood.png",
@@ -24,17 +14,13 @@
     "img/misc/locations/banner/banner_text_bloodmoon.png",
     "img/misc/old/banner.png"
   ],
-  "additionFile": [
-    "README.md",
-    "i18n.json"
-  ],
+  "additionFile": ["README.md", "translates.json"],
   "addonPlugin": [
     {
       "modName": "ModLoader DoL ImageLoaderHook",
       "addonName": "ImageLoaderAddon",
       "modVersion": "^2.3.0",
-      "params": [
-      ]
+      "params": []
     },
     {
       "modName": "ImageLoaderHook2BeautySelectorAddon",
@@ -52,7 +38,7 @@
     },
     {
       "modName": "GameVersion",
-      "version": "=0.5.3.7"
+      "version": "^0.5.3.7"
     },
     {
       "modName": "ModLoader DoL ImageLoaderHook",

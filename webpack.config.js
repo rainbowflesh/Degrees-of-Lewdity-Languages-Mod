@@ -1,108 +1,69 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
+import { fileURLToPath } from "url";
+import { dirname, resolve as _resolve } from "path";
 
-const path = require('path');
-const fs = require('fs');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+import fs from "fs";
 
-const isProduction = process.env.NODE_ENV == 'production';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+const isProduction = process.env.NODE_ENV == "production";
 
-const stylesHandler = 'style-loader';
+const stylesHandler = "style-loader";
 
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
 // const ZipPlugin = require('zip-webpack-plugin');
 
-const webpack = require('webpack');
+import webpack from "webpack";
 
 const config = {
-  entry: './src/init.ts',
+  entry: "./src/init.ts",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'i18nLoad.js',
+    path: _resolve(__dirname, "dist/dol-languages-mod/"),
+    filename: "translationsLoader.js",
   },
-  devtool: 'inline-source-map',
-  target: 'web',
-  // devServer: {
-  //   open: true,
-  //   host: '0.0.0.0',
-  //   port: 3000,
-  // },
+  devtool: "inline-source-map",
+  target: "web",
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   template: 'src/web/1.html',
-    // }),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
-        configFile: 'src/tsconfig.json',
+        configFile: "src/tsconfig.json",
         memoryLimit: 4096,
       },
     }),
-
-    // new webpack.BannerPlugin({
-    //   banner: fs.readFileSync('./src/GreasemonkeyScript/gm_front.txt', {encoding: 'utf-8'}),
-    //   raw: true,
-    // }),
   ],
   module: {
     rules: [
       {
+        use: "ts-loader",
         test: /\.(ts|tsx)$/i,
-        loader: 'ts-loader',
-        exclude: ['/node_modules/'],
+        exclude: ["/node_modules/"],
       },
-      // {
-      //   test: /\.css$/i,
-      //   use: [stylesHandler, 'css-loader'],
-      // },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [stylesHandler, 'css-loader', 'sass-loader'],
-      // },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: 'asset',
+        type: "asset",
       },
-
-      // https://stackoverflow.com/questions/42631645/webpack-import-typescript-module-both-normally-and-as-raw-string
       {
-        // test: /.*\/inlineText\/.*/,
         resourceQuery: /inlineText/,
-        type: 'asset/source',
+        type: "asset/source",
       },
-      // {
-      //   test: /src\/inlineText\/GM\.css/,
-      //   use: 'raw-loader',
-      // },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: 'src/tsconfig.json',
-    })],
-    alias: {
-      // GM_config: './src/libs/GM_config/gm_config.js',
-    },
+    extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    alias: {},
     fallback: {
-      // for libsodium
-      // only in browser
       crypto: false,
     },
   },
 };
 
-module.exports = () => {
+export default () => {
   if (isProduction) {
-    config.mode = 'production';
-
-
+    config.mode = "production";
   } else {
-    config.mode = 'development';
+    config.mode = "development";
   }
   return config;
 };
