@@ -1,18 +1,18 @@
-import type { SC2DataManager } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/SC2DataManager";
-import type { ModUtils } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/Utils";
-import type { LogWrapper } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/ModLoadController";
-import { ModZipReader, ModZipReaderHash } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/ModZipReader";
-import type { IdbRef, IdbKeyValRef } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/IdbKeyValRef";
-import type { SC2DataInfo, SC2DataInfoCache } from "../lib/sugarcube-2-ModLoader/dist-BeforeSC2/SC2DataInfoCache";
+import type { SC2DataManager } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/SC2DataManager";
+import type { ModUtils } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/Utils";
+import type { LogWrapper } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/ModLoadController";
+import { ModZipReader, ModZipReaderHash } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/ModZipReader";
+import type { IdbRef, IdbKeyValRef } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/IdbKeyValRef";
+import type { SC2DataInfo, SC2DataInfoCache } from "../../lib/sugarcube-2-ModLoader/dist-BeforeSC2/SC2DataInfoCache";
 
 import { JSONParser } from "@streamparser/json";
 import { TypeBOutputText, TypeBInputStoryScript, ModI18NTypeB, TypeBI18NInputType } from "./TypeB";
 import JSZip, { JSZipStreamHelper } from "jszip";
 import { assert, is } from "tsafe";
-import packageJson from "../package.json";
-import logger from "./logHelper";
+import packageJson from "../../package.json";
+import logger from "../logHelper";
 
-import { MOD_NAMESPACE } from "./constants";
+import { MOD_NAMESPACE } from "../constants";
 logger.info(MOD_NAMESPACE, "Logger initialized");
 
 export function sleep(ms: number = 0) {

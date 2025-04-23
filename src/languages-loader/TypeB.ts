@@ -1,5 +1,5 @@
-import { MOD_NAMESPACE } from "./constants";
-import logger from "./logHelper";
+import { MOD_NAMESPACE } from "../constants";
+import logger from "../logHelper";
 
 export interface TypeBI18NInputType {
   f: string;

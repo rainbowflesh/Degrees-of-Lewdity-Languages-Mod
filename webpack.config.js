@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
-  entry: "./src/init.ts",
+  entry: "./src/languages-loader/init.ts",
   output: {
     path: _resolve(__dirname, "dist/dol-languages-mod/"),
     filename: "translationsLoader.js",
